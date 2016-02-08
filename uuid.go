@@ -37,7 +37,7 @@ func (u UUID) Value() (driver.Value, error) {
 	if !u.Valid {
 		return nil, nil
 	}
-	return u.UUID, nil
+	return u.UUID.Value()
 }
 
 // NewUUID creates a new UUID.
