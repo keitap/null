@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
+	"github.com/k0kubun/pp"
 	"github.com/satori/go.uuid"
 )
 
@@ -145,11 +146,13 @@ func TestUUIDPointer(t *testing.T) {
 }
 
 func TestUUIDScanValue(t *testing.T) {
-	var ti UUID
-	err := ti.Scan(uuidValue)
+	var ui UUID
+	err := ui.Scan(uuidValue)
 	maybePanic(err)
-	assertUUID(t, ti, "scanned uuid")
-	if v, err := ti.Value(); v != uuidValue || err != nil {
+	assertUUID(t, ui, "scanned uuid")
+	if v, err := ui.Value(); v != uuidString || err != nil {
+		pp.Println(v)
+		pp.Println(uuidValue)
 		t.Error("bad value or err:", v, err)
 	}
 

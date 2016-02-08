@@ -22,6 +22,8 @@ func (u *UUID) Scan(value interface{}) error {
 	switch x := value.(type) {
 	case uuid.UUID:
 		u.UUID = x
+	case []int8, []byte, string:
+		err = u.UUID.Scan(x)
 	case nil:
 		u.Valid = false
 		return nil
